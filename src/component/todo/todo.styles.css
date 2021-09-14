@@ -1,0 +1,68 @@
+.todo {
+  display: flex;
+  background-color: white;
+  border-bottom: 2px solid whitesmoke;
+  /* box-shadow: 5px 5px 7px rgba(85, 83, 83, 0.133), -5px -5px 7px #fff7; */
+  align-items: center;
+}
+
+.todo > li {
+  display: flex;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 24px;
+  background-color: white;
+  list-style: none;
+  align-items: center;
+  min-width: 75%;
+}
+
+.todo > li.completed {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.todo > .MuiSvgIcon-root {
+  display: flex;
+  padding-left: auto;
+}
+
+.todo > .close > .MuiSvgIcon-root {
+  display: none;
+  cursor: pointer;
+}
+.todo:hover > .close .MuiSvgIcon-root {
+  display: block;
+}
+
+.todo > .close > .MuiSvgIcon-root:hover {
+  color: #d88585 !important;
+  display: flex;
+  float: left;
+}
+.todo__editInput{
+  display: flex;
+  border-color: rgb(192, 57, 192);
+  /* padding-right: 60px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 24px;
+  background-color: transparent;
+  list-style: none;
+  align-items: center;
+  border: whitesmoke;
+  min-width: 100%;
+  border: none;
+  font-size: 24px;
+  width: auto;
+  align-items: center;
+  outline: none;
+  background: none;
+  font-style: italic
+}
+/* hovered{
+  color: #d88585 !important;
+  display: flex;
+  float: left;
+} */
