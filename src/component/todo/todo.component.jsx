@@ -4,17 +4,39 @@ import React, { useState, useRef } from 'react';
 
 import './todo.styles.css';
 
-function Todo({ todos, tickTodo, deleteTodo, editTodo }) {
+function Todo({ todos, setTodos, tickTodo, deleteTodo, editTodo }) {
   const [hovered, setHovered] = useState(false);
   const toggledHover = () => setHovered(!hovered);
   const inputRef = useRef(null);
 
-  const [edit, setEdit] = useState({ id: null, text: '', isInEditMode: false });
+  const [edit, setEdit] = useState({ id: null, text: '' });
 
-  const changeEditMode = () => {
-    setEdit({ isInEditMode: !edit.isInEditMode });
+  const changeEditMode = (editid) => {
+    console.log({editid});
+
+    setEdit((prevEdit) => ({ ...prevEdit, id: editid }));
+
+    // setEdit(function (prevEdit) {
+    //   return {
+    //      ...prevEdit, 
+    //      isInEditMode: !prevEdit.isInEditMode
+    //   }
+    // });
   };
 
+  const handleClearEdit = () => {
+    setEdit({ id: null, text: '', isInEditMode: false });
+  }
+
+  const handleChange = (e, id) => {
+    setTodos((prevTodos) => prevTodos.map((todo) => {
+      if(todo.id === id){
+        return {...todo, text: e.target.value};
+      }
+      return todo;
+    }))
+  };
+  
   const updateTodo = () => {
     const newValue = () =>
       setEdit({
@@ -45,13 +67,24 @@ function Todo({ todos, tickTodo, deleteTodo, editTodo }) {
           key={index}
           onMouseEnter={toggledHover}
           onMouseLeave={toggledHover}
-          onDoubleClick={() => changeEditMode(todos)}
+          // onDoubleClick={() => changeEditMode(todos)}
         >
           <Checkbox
             checked={todo.completed}
             onClick={() => tickTodo(todo.id)}
           />
-          <li className={todo.completed && 'completed'}>{todo.text}</li>
+          {edit.id === todo.id ? (
+            <input 
+              autoFocus
+              onChange={(e) => handleChange(e, todo.id)}
+              onBlur={() => handleClearEdit()} 
+              type="text" 
+              value={todo.text} 
+              disabled={edit.id !== todo.id} 
+            />
+          ): (
+            <li onDoubleClick={() => changeEditMode(todo.id)} className={todo.completed ? 'completed' : ""}>{todo.text}</li>
+          )}          
           <div className="close">
             <Close onClick={() => deleteTodo(todo.id)} />
           </div>

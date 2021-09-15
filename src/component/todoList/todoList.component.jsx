@@ -59,6 +59,7 @@ function TodoList() {
       <TodoForm addTodo={addTodo} />
       <Todo
         todos={filteredTodos}
+        setTodos={setTodos}
         deleteTodo={deleteTodo}
         tickTodo={tickTodo}
         editTodo={editTodo}
