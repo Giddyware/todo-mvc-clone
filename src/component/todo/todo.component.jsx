@@ -13,7 +13,6 @@ function Todo({ todos, tickTodo, deleteTodo, editTodo }) {
 
   const changeEditMode = () => {
     setEdit({ isInEditMode: !edit.isInEditMode });
-   
   };
 
   const updateTodo = () => {
@@ -22,8 +21,8 @@ function Todo({ todos, tickTodo, deleteTodo, editTodo }) {
         isInEditMode: false,
         value: inputRef.current.value,
       });
-      
-    console.log(inputRef.current.value,todos);
+
+    console.log(inputRef.current.value, todos, edit.id);
     editTodo(edit.id, newValue);
   };
 
@@ -46,7 +45,7 @@ function Todo({ todos, tickTodo, deleteTodo, editTodo }) {
           key={index}
           onMouseEnter={toggledHover}
           onMouseLeave={toggledHover}
-          onDoubleClick={()=>changeEditMode(todos)}
+          onDoubleClick={() => changeEditMode(todos)}
         >
           <Checkbox
             checked={todo.completed}

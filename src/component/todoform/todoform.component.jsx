@@ -6,15 +6,13 @@ import './todoform.styles.css';
 function TodoForm(props) {
   const [input, setInput] = useState('');
 
-  const inputRef = useRef(null)
+  const inputRef = useRef(null);
   useEffect(() => {
-    
-    inputRef.current.focus()
+    inputRef.current.focus();
     // return () => {
     //   cleanup
     // }
-  }, [])
- 
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,20 +28,16 @@ function TodoForm(props) {
 
   return (
     <div>
-      
-
       <form className="todo__form" onSubmit={handleSubmit}>
         <div className="todo__formInput">
           <ExpandMore />
           <input
-          ref = {inputRef}
+            ref={inputRef}
             value={input}
             placeholder="What needs to be done?"
             onChange={(e) => setInput(e.target.value)}
           />
-          <button disabled={!input} type="submit"/>
-           
-         
+          <button disabled={!input} type="submit" />
         </div>
       </form>
     </div>
